@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Piedra">
+        <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css?family=Oswald">
+<style>
+  :root{
+    --col: 1;
+    --row: 1;
+  }
+  .box{
+    background: red;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+    margin-top: 0;
+    display: inline-block;
+    float: left;
+
+  }
+  .row{
+    display: block;
+    float: left;
+    width: 100%;
+
+  }
+
+  .change{
+    border: 0.1em dotted black;
+	  background-color: grey;
+
+  }
+  .cell{
+	  background-color: #ffe1de;
+  }
+  #c{
+    text-align: center;
+    height: 500px;
+    width: 500px;
+    border: 10px solid transparent;
+    border-image: url(border.png) 40 round;
+
+    margin: 50px 360px;
+
+    display: grid;
+    grid-gap: 0;
+    grid-template-rows: repeat(var(--col), auto);
+    grid-template-columns: repeat(var(--row), auto);
+
+
+  }
+  #w{
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 50px;
+
+
+  }
+  h1{
+    color: #e6614d;
+    font-family: Piedra;
+    font-size: 40px;
+    margin-top: 0;
+  }
+button{
+  height: 3em;
+  font-family: Oswald;
+
+  border-radius: 2em;
+  border: solid 0;
+  background-color: #ffb688;
+  font-size: 3em;
+  margin: 0 4em 0 0;
+}
+  .reset{
+    margin-left: 100px;
+    font-size: 15px;
+  }
+  #rainbow{
+    margin-left: 10px;
+    font-size: 15px;
+
+  }
+  #color{
+    margin-left: 100px;
+    border-radius: 2em;
+    background-color: #ffb688;
+
+  }
+  h3{
+    font-family: Oswald;
+    color: #785651;
+    margin: 1em 3em 0 0;
+  }
+  header{
+    margin: 0;
+    background: #ff9888;
+    padding: 1em;
+    display: flex;
+    min-height: 2em;
+    align-items: flex-end;
+    border-radius: 0 0 4em 4em;
+  }
+  body{
+    margin: 0;
+    padding: 0;
+    background: #88ffc7;
+  }
+
+</style>
+<body>
+
+<header>
+  <h1>Etch a Sketch</h1>
+  <input type="color" id='color'><h3>Choose your color</h3></input>
+  <button id='rainbow'>Rainbow mode</button>
+</header>
+
+<container id="c">
+</container>
+</body>
+<script>
+  function createDiv(rows, columns){
+
+    const container = document.querySelector('container');
+    container.style.setProperty('--col', rows);
+    container.style.setProperty('--row', columns);
+    for(let i = 0; i < (rows * columns); i++){
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      container.appendChild(cell);
+
+    }
+  }
+  createDiv(16,16);
+  let cv = '#000000';
+  test = document.querySelectorAll('div.cell');
+  const rainbow = document.querySelector('#rainbow');
+
+
+
+
+  //Default color value is black
+
+  const color = document.querySelector('#color');//color selector changes the color value
+  color.addEventListener('input', () => {
+    cv = color.value;
+  });
+
+  let condition = false;
+
+  for(let y=0; y < test.length; y++){
+    test[y].addEventListener('mouseover', () =>{
+      rainbow.addEventListener('click', ()=> {
+        condition = true;
+      });
+      if(condition == true){
+        var randomColor = Math.floor(Math.random()*16777215).toString(16);
+        cv = '#' + randomColor;
+      }
+
+      //var randomColor = Math.floor(Math.random()*16777215).toString(16);
+      test[y].style.background = cv;
+
+    })
+  }
+
+  const j = document.querySelector('header');
+  const button = document.createElement('button');
+  button.classList.add('reset');
+  button.textContent ="Reset";//Creating a reset button and adding it to the website
+  j.appendChild(button);
+
+  const container = document.querySelector('container');
+  button.addEventListener('click', () => {
+      container.innerHTML = '';
+
+
+      var p = prompt("Enter the size: ");
+      if (p!= null){
+        createDiv(p,p);
+      }
+      test = document.querySelectorAll('div.cell');
+      for(let v=0; v < test.length; v++){
+
+        test[v].addEventListener('mouseover', () =>{
+          rainbow.addEventListener('click', ()=> {
+            condition = true;
+          });
+          if(condition == true){
+            var randomColor = Math.floor(Math.random()*16777215).toString(16);
+            cv = '#' + randomColor;
+          }
+          //var randomColor = Math.floor(Math.random()*16777215).toString(16);
+          test[v].style.background = cv;
+
+        })
+      }
+
+
+  })
+
+
+
+</script>
+</html>

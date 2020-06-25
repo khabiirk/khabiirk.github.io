@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+<style>
+  container {
+    font-size: 25px;
+    text-align: center;
+    height: 500px;
+    width: 400px;
+    border: 10px solid transparent;
+    margin: 50px 360px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 25% 15% 15% 15% 15% 15%;
+    padding: 150px;
+    padding-bottom: 0px;
+
+
+
+  }
+  .operand{
+    background: white;
+  }
+  #screen{
+    overflow: hidden;
+    padding: 50px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    border: solid ;
+    border-width: 2px;
+    background: #C5C6C7;
+    font-family: 'Press Start 2P';
+  }
+  #zero{
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  button{
+    font-size: 25px;
+    background: #45A29E;
+    border-color: #1F2833;
+  }
+  body{
+    background: #1F2833
+
+  }
+  button:hover{
+    background: #66FCF1;
+  }
+  .operand:hover{
+    background: #C5C6D0;
+  }
+  .AC{
+    background: white;
+  }
+  #c{
+    background: white;
+  }
+  #d{
+    background: white;
+  }
+  .equal{
+    background: white;
+  }
+  footer{
+    text-align: center;
+    color: white;
+    font-family: 'Press Start 2P';
+  }
+</style>
+<header>
+  </header>
+  <body>
+    <container>
+      <div id="screen">
+
+      </div >
+      <button value='clear' class ='AC'>
+        AC
+      </button>
+      <button value ='sign' id = 'c'>
+        +/-
+      </button>
+      <button value='%' id = 'd'>
+        %
+      </button>
+      <button value='/' class = "operand">
+        /
+      </button>
+      <button value='7' class = 'num'>
+        7
+      </button>
+      <button value='8' class = 'num'>
+        8
+      </button>
+      <button value='9' class = 'num'>
+        9
+      </button>
+      <button value='x' class = "operand">
+        X
+      </button>
+      <button value='4' class = 'num'>
+        4
+      </button>
+      <button value='5' class = 'num'>
+        5
+      </button>
+      <button value='6' class = 'num'>
+        6
+      </button>
+      <button value='-' class = "operand">
+        -
+      </button>
+      <button value='1' class = 'num'>
+        1
+      </button>
+      <button value='2' class = 'num'>
+        2
+      </button>
+      <button value='3' class = 'num'>
+        3
+      </button>
+      <button value='+' class = "operand">
+        +
+      </button>
+      <button value="0" id="zero" class = 'num'>
+        0
+      </button>
+      <button value=".">
+        .
+      </button>
+      <button value="=" class = 'equal'>
+        =
+      </button>
+    </container>
+    </body>
+    <footer>
+      By Khabiir Khan, 2020
+    </footer>
+    <script>
+      function display(s){
+        const screen = document.querySelector('#screen');
+        screen.textContent = s;
+
+
+      }
+
+      function add (n1, n2) {
+      	return n1+n2;
+
+      };
+
+      function subtract (n1, n2) {
+      	return n1 - n2;
+      };
+
+      function multiply(n1, n2){
+        return n1 *  n2;
+      };
+
+      function divide(n1, n2){
+        return n1 / n2;
+      };
+
+      function operate(op, n1, n2){
+        let result;
+        let v;
+
+        switch(op){
+          case '+':
+            v = add(n1, n2);
+
+            //alert(n1);
+            return(v);
+          case '-':
+            v = subtract(n1, n2);
+
+            return(v);
+          case 'x':
+            v = multiply(n1, n2);
+            return(v);
+          case '/':
+            v = divide(n1, n2);
+            return(v);
+          default:
+            return "Error";
+
+        }
+
+      }
+      let digitcount = 0;
+      let o = 'u';
+      let n1 = 'u';
+      let n2 = 'u';
+      let temp = 0;
+      let decimal = false;
+      let but = document.querySelectorAll('button');
+      but.forEach(b => b.addEventListener('click', () => {
+        if(b.classList.contains('operand')){
+          if(o != 'u'){
+            temp = operate(o, n1, n2);
+            n1 = temp;
+            n2 = 'u';
+          }
+
+
+          o = b.value;
+          decimal = false;
+
+        }
+        else if(b.classList.contains('num')){
+
+          if(n1 === 'u'){
+
+            n1 = parseInt(b.value);
+
+
+
+
+            display(n1);
+            digitcount = digitcount + 1;
+            //if(temp != 0){
+              //n1 = temp;
+
+            //}
+
+          }
+          else if(o === 'u'){
+
+            if(decimal){
+              if(n1.toString().includes(".")){
+                n1 = parseFloat(n1.toString() + b.value);
+              }
+              else{
+                n1 = parseFloat(n1.toString() + "." + b.value);
+              }
+
+            }
+            else{
+              n1 = parseInt(n1.toString() + b.value);
+            }
+            display(n1);
+          }
+          else if(n2 === 'u'){
+            n2 = parseInt(b.value);
+            display(n2);
+            temp = operate(o, n1, n2);
+
+
+          //  alert(temp);
+
+          //  n2 = 'u';
+          //  o = 'u'
+            //alert(n1);
+
+          }
+          else if(n2 != 'u' && o != 'u'){
+            if(decimal){
+              if(n2.toString().includes(".")){
+                n2 = parseFloat(n2.toString() + b.value);
+              }
+              else{
+                n2 = parseFloat(n2.toString() + "." + b.value);
+              }
+
+            }
+            else{
+
+              n2 = parseInt(n2.toString() + b.value);
+            }
+            display(n2);
+            temp = operate(o, n1, n2);
+            //alert(n1);
+          }
+          }
+        if(b.classList.contains('equal')){
+          if(o == 'u'){
+            temp = n1;
+          }
+          display(temp);
+          n1 = temp;
+          temp = 0;
+          n2 = 'u';
+          o = 'u';
+        }
+        if(b.value === 'clear'){
+
+          display("");
+          n1 = 'u';
+          n2 = 'u';
+          o = 'u';
+          temp = 0;
+          decimal = false;
+        }
+        if(b.value === "."){
+          if(n1 == 'u'){
+            n1 = 0;
+          }
+          if(n2 == 'u'){
+            n2 = 0;
+          }
+          decimal = true;
+        }
+        if(b.value === "%"){
+          if(n1 != 'u'){
+            n1 = n1 / 100;
+            display(n1);
+          }
+        }
+        if(b.value === "sign"){
+          if(o === 'u' && n1 != 'u'){
+            n1 = n1 * -1;
+            display(n1);
+          }
+          else if(n2 != 'u'){
+            n2 = n2 * -1;
+            temp = operate(o, n1, n2);
+            display(n2);
+          }
+
+        }
+
+      }));
+
+
+
+
+
+    </script>
+
+</html>
