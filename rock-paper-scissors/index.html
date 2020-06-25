@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock-Paper-Scissors</title>
+  <p>Go into console mode to begin the game</p>
+  <meta charset="UTF-8"/>
+</head>
+<body id="body">
+  <script>
+    // Your JavaScript goes here!
+    let pCount = 0;
+    let cCount = 0;
+  function randomNumber(min, max){
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) +min;
+  }
+  function computerPlay(){
+    let options = ['Rock', 'Paper', 'Scissors'];
+    return (options[randomNumber(0,2)]);
+  }
+  function play(psel, csel){
+    if (c > 5){
+      if (pCount > cCount){
+        display("YOU WON THE MATCH!!!");
+
+      }
+      else{
+        display("YOU LOST THE MATCH!!!");
+      }
+      document.querySelectorAll('.r').forEach(function(a){ a.remove()
+});
+      document.querySelectorAll('.p').forEach(function(a){ a.remove()
+});
+      document.querySelectorAll('.s').forEach(function(a){ a.remove()
+})
+      //document.removeEventListener('click', _listener1());
+      //document.removeEventListener('click', _listener2());
+      //document.removeEventListener('click', _listener3());
+    return;
+    };
+    psel = psel.toLowerCase()
+    csel = csel.toLowerCase()
+    if (psel == csel){
+      return "Draw!!"
+    }
+    else if (psel == "rock") {
+      if (csel == "scissors"){
+        pCount++
+        return "You win!!"
+
+      }
+      else {
+        cCount++
+        return "You lose sorry!!"
+
+      }
+    }
+    else if(psel == "paper"){
+      if (csel == "rock"){
+        pCount++
+        return "You win!!"
+
+      }
+      else{
+        cCount++
+        return "You lose sorry!!"
+
+      }
+    }
+    else if(psel == "scissors"){
+      if (csel == "paper"){
+        pCount++
+        return "You win!!"
+
+      }
+      else {
+        cCount++
+        return "You lose sorry!!"
+
+      }
+    }
+    console.log(c);
+
+
+  }
+  function createButton(){
+    const body = document.querySelector('#body');
+    const rock = document.createElement('button');
+    const paper = document.createElement('button');
+    const scissors = document.createElement('button');
+
+    rock.classList.add('r');
+    paper.classList.add('p');
+    scissors.classList.add('s');
+
+    rock.textContent = 'Rock';
+    paper.textContent = 'Paper';
+    scissors.textContent = 'Scissors';
+
+    body.appendChild(rock);
+    body.appendChild(paper);
+    body.appendChild(scissors);
+  }
+  function display(t){
+    const s = document.querySelector('#body');
+    const text = document.createElement('p');
+
+    text.classList.add('l')
+    text.textContent = t;
+    body.appendChild(text);
+  }
+  function game(){
+
+
+    display("Lets play")
+
+    createButton();
+
+
+
+    const b1 = document.querySelector('button.r');
+    b1.addEventListener('click', () => {
+      let z = "Round " + c;
+      display(z);
+      display(play(computerPlay(), "rock"));
+      c++;
+      console.log(c);
+
+
+    });
+    const b2 = document.querySelector('button.p');
+    b2.addEventListener('click', () => {
+      z = "Round " + c;
+      display(z);
+      display(play(computerPlay(), "paper"));
+      c++;
+      console.log(c);
+    });
+    const b3 = document.querySelector('button.s');
+    b3.addEventListener('click', () => {
+      z = "Round " + c;
+      display(z);
+      display(play(computerPlay(), "scissors"));
+      c++;
+      console.log(c);
+    });
+
+    console.log(c);
+
+    //let p = prompt("Enter your choice: ")
+  //  console.log(play(computerPlay(), p))
+//    p = prompt("Enter your choice: ")
+  //  console.log(play(computerPlay(), p))
+  //  p = prompt("Enter your choice: ")
+  //  console.log(play(computerPlay(), p))
+  //  p = prompt("Enter your choice: ")
+  //  console.log(play(computerPlay(), p))
+  //  p = prompt("Enter your choice: ")
+  //  console.log(play(computerPlay(), p))
+
+
+
+  }
+  let c = 0;
+  game()
+
+
+  </script>
+</body>
+</html>

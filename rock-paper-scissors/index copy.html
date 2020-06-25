@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock-Paper-Scissors</title>
+  <p>Go into console mode to begin the game</p>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    let pCount = 0;
+    let cCount = 0;
+  function randomNumber(min, max){
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) +min;
+  }
+  function computerPlay(){
+    let options = ['Rock', 'Paper', 'Scissors'];
+    return (options[randomNumber(0,2)]);
+  }
+  function play(psel, csel){
+    psel = psel.toLowerCase()
+    csel = csel.toLowerCase()
+    if (psel == csel){
+      return "Draw!!"
+    }
+    else if (psel == "rock") {
+      if (csel == "scissors"){
+        pCount++
+        return "You win!!"
+
+      }
+      else {
+        cCount++
+        return "You lose sorry!!"
+
+      }
+    }
+    else if(psel == "paper"){
+      if (csel == "rock"){
+        pCount++
+        return "You win!!"
+
+      }
+      else{
+        cCount++
+        return "You lose sorry!!"
+
+      }
+    }
+    else if(psel == "scissors"){
+      if (csel == "paper"){
+        pCount++
+        return "You win!!"
+
+      }
+      else {
+        cCount++
+        return "You lose sorry!!"
+
+      }
+    }
+
+  }
+  function game(){
+    console.log("Lets play")
+    let p = prompt("Enter your choice: ")
+    console.log(play(computerPlay(), p))
+    p = prompt("Enter your choice: ")
+    console.log(play(computerPlay(), p))
+    p = prompt("Enter your choice: ")
+    console.log(play(computerPlay(), p))
+    p = prompt("Enter your choice: ")
+    console.log(play(computerPlay(), p))
+    p = prompt("Enter your choice: ")
+    console.log(play(computerPlay(), p))
+    if (pCount > cCount){
+      console.log("YOU WON THE MATCH!!!")
+    }
+    else{
+      console.log("YOU LOST THE MATCH!!!")
+    }
+  }
+
+  game()
+
+
+  </script>
+</body>
+</html>
