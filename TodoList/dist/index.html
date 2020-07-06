@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    body {
+        margin: 0;
+    }
+    
+    #description {
+        width: 90%;
+        height: 30%;
+    }
+    
+    #titlebar {
+        background: #1995AD;
+        height: 40px;
+        font-family: Orbitron;
+        text-align: center;
+    }
+    
+    .complete {
+        margin: 11px;
+    }
+    
+    .task {
+        background: #F1F1F2;
+        font-family: Indie Flower;
+    }
+    
+    .nav-bar {
+        background-color: #c9cdce;
+        font-family: Acme;
+        text-align: center;
+    }
+    
+    ul:hover {
+        cursor: pointer;
+    }
+    
+    li:visited {
+        background-color: blue;
+    }
+    
+    main {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        height: 850px;
+        ;
+    }
+    
+    .title {
+        font-size: 30px;
+    }
+    
+    .newTask {
+        border: .5px dotted rgba(60, 115, 162, 0.5);
+        width: 30px;
+        margin: auto;
+        padding: 10px;
+    }
+    
+    .newTask:hover {
+        background-color: rgba(60, 115, 162, 0.5);
+        cursor: pointer;
+    }
+    
+    .top {
+        display: grid;
+        grid-template-columns: 5% 90% 5%;
+    }
+    
+    .project-header {
+        text-align: center;
+    }
+    
+    .todo {
+        display: grid;
+    }
+    
+    .high {
+        background-color: red;
+        height: inherit;
+    }
+    
+    .low {
+        background-color: blue;
+        height: inherit;
+    }
+    
+    .modal {
+        display: none;
+        position: fixed;
+        padding-top: 50px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .model-content {
+        border-radius: 10px;
+        position: relative;
+        background-color: #517174;
+        padding: 20px;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+    }
+    
+    li {
+        height: 50px;
+        list-style: none;
+        padding: 25px;
+    }
+    
+    li:hover {
+        background: rgb(218, 216, 216);
+    }
+    
+    .bottom {
+        padding-left: 25px;
+    }
+    
+    .classhigh {
+        border: solid rosybrown;
+    }
+    
+    .classlow {
+        border: solid cornflowerblue;
+    }
+    
+    .defaulproject {
+        background-color: #BCBABE;
+    }
+    
+    .classhigh:hover {
+        background-color: #F9C6BB;
+    }
+    
+    .classlow:hover {
+        background-color: #BDCEFA;
+    }
+    
+    @import '~js-datepicker/dist/datepicker.min.css';
+</style>
+
+<body>
+    <div id='titlebar'><span>ToDo</span></div>
+    <main>
+        <div class='nav-bar'>
+            <div class='project'>
+            </div>
+            <div class='button'></div>
+        </div>
+        <section class='task'>
+            <div>
+                <h1 class='project-header'></h1>
+            </div>
+            <div class='todo'>
+                </tbody>
+
+        </section>
+        <section class='modal'>
+            <form name="task-form" class='model-content'>
+                <label for='title'>Title:</label>
+                <input type='text' id='title' name='title' required />
+                <label for='description'>Description: </label>
+                <input type='text' id='description' name='description' required />
+                <label for='date'>Date: </label>
+                <input type='text' id='datepicker' name='date' />
+                <label for='priority'>Priority </label>
+                <select id='priority' name='priority' required>
+                    <option value='high'>High</option>
+                    <option value="low">Low</option>
+                 </select>
+
+
+                <div class="button-container">
+                    <button type="button" class="cancel">Cancel</button>
+                    <button type="button" class="add">Add</button>
+                </div>
+
+            </form>
+
+        </section>
+    </main>
+</body>
+<script src="main.js"></script>
+
+</html>
