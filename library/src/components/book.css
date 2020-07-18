@@ -1,0 +1,50 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.Book {
+    width: 200px;
+    height: 220px;
+    border: solid black;
+    background-color: darkred;
+    color: gold;
+    border-radius: 15px 8px 8px 15px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: #e8e6e4;
+    color: black;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  i {
+      margin-left: 80%;
+  }
+  .detail {
+      text-align: center;
+  }
+  .delete {
+      margin-left: 0;
+      background-color: inherit;
+  }
+
+  .d {
+      background-color:inherit;
+  }

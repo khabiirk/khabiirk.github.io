@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+form {
+    display: none;
+    width: 60%;
+    background: beige;
+    border-radius: 13px;
+    padding: 10px;
+}
+button {
+    background: bisque;
+    border-radius: 15px;
+    border: 0;
+}
+button:hover {
+    cursor: pointer;
+}
+.a {
+    margin: 0;
+}
+.con {
+    display: flex;
+    margin-left: 40%;
+}
